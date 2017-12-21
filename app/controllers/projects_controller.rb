@@ -16,8 +16,10 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(projects_params)
+    @project.user_id = current_user.id
     if @project.save
       redirect_to projects_path, notice: "プロジェクトを作成しました！!"
+      NoticeMailer.sendmail_project(@project).deliver
     else
       render 'new'
     end
