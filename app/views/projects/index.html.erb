@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="wrapper col-md-8 col-md-offset-2 col-sm-10">
+    <p><%= notice %></p>
+    <h1>今日のプロジェクト</h1>
+      <%= link_to "プロジェクトを作成する", new_project_path, class: 'btn btn-default' %>
+    <% @projects.each do |project| %>
+    <div class="row">
+      <h4><strong><%= project.subject %></strong></h4>
+      <p><%= project.content %></p>
+      <%= link_to "編集", edit_project_path(project.id), class: 'btn btn-sm btn-success' %>
+      <%= link_to "削除", project_path(project.id), method: :delete, data: { confirm: '本当に削除しますか？？' }, class: 'btn btn-sm btn-danger' %>
+    </div>
+    <% end %>
+  </div>
+</div>
