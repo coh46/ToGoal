@@ -1,0 +1,15 @@
+<div class="container">
+ <div class="wrapper col-md-8 col-md-offset-2 col-sm-10">
+   <h2>お知らせ</h2>
+     <% @notifications.each do |notification| %>
+       <div class="row">
+         <% if notification.read == true %>
+           既読
+         <% else %>
+           未読
+         <% end %>
+         <p><%= notification.comment.user.try(:name) %>さんがあなたのプロジェクト（<%= link_to "#{notification.comment.project.countent}", project_path(notification.comment.project, notification_id: notification.id) %>）にコメントしました。</p>
+         <p><%= posted_time(notification.created_at) %>前</p>
+       <% end %>
+  </div>
+</div>
